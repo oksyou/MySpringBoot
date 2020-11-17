@@ -14,4 +14,5 @@ public interface UserRepository {
     void delete(String login);
 
     void update(String login, String password);
+
 }

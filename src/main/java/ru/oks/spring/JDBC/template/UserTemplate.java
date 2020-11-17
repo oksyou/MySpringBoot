@@ -14,12 +14,12 @@ public class UserTemplate implements UserRepository {
     @Override
     public void insert(User user) {
         jdbcTemplateObject.update(
-                "insert into public.user (login, password) values(?,?)", user.getLogin(), user.getPassword());
+                "insert into public.users (login, password) values(?,?)", user.getLogin(), user.getPassword());
     }
 
     @Override
     public User getUserByLogin(String login) {
-        String getSql = "SELECT password FROM public.user WHERE login=?";
+        String getSql = "SELECT password FROM public.users WHERE login=?";
         try{
             String password = (String) jdbcTemplateObject.queryForObject(getSql, new Object[]{login}, String.class);
             return new User(login, password);
@@ -31,13 +31,13 @@ public class UserTemplate implements UserRepository {
 
     @Override
     public void delete(String login) {
-        String deleteSql = "DELETE FROM public.user WHERE login=?";
+        String deleteSql = "DELETE FROM public.users WHERE login=?";
         jdbcTemplateObject.update(deleteSql, login);
     }
 
     @Override
     public void update(String login, String password) {
-        String updateSql = "UPDATE public.user SET password=? WHERE login=?";
+        String updateSql = "UPDATE public.users SET password=? WHERE login=?";
         jdbcTemplateObject.update(updateSql, password, login);
     }
 }

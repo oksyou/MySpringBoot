@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/user/reg",
                         "/user/auth",
                         "/url/**").permitAll()
+                .antMatchers("note/**").authenticated()
                 .antMatchers("/user/{login}/**").access("#login==authentication.name")
                 .anyRequest().authenticated();
     }

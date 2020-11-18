@@ -34,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/hello",
                         "/user/reg",
                         "/user/auth",
-                        "/url/**").permitAll()
+                        "/url/**",
+                        "/files/**",
+                        "/filesdb/**").permitAll()
                 .antMatchers("note/**").authenticated()
                 .antMatchers("/user/{login}/**").access("#login==authentication.name")
                 .anyRequest().authenticated();

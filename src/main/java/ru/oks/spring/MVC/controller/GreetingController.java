@@ -46,7 +46,6 @@ public class GreetingController {
 
     @GetMapping("/gettime")
     public TimeDifferenceDTO getTimeDifference(@RequestParam("time") long time) {
-
         TimeDifferenceDTO timeDifferenceDTO = new TimeDifferenceDTO();
         timeDifferenceDTO.currentTime = System.currentTimeMillis();
         timeDifferenceDTO.timediff = timeDifferenceDTO.currentTime - time;

@@ -22,15 +22,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * Сервис для работы с файлами на локальном компьютере.
+ */
 @Service
 public class FileService {
 
-    private String basePathForUpload = "D:\\example\\upload\\";
+    private final String basePathForUpload = "D:\\example\\upload\\";
 
     @Autowired
     private LocalDocumentRepository localDocumentRepository;
 
-
+    /**
+     * Загрузка нового файла.
+     *
+     * @param file файл
+     * @return ответ
+     */
     public ResponseEntity upload(MultipartFile file) {
         String fileName;
         if (file.getOriginalFilename() != null) {
@@ -50,6 +58,13 @@ public class FileService {
         return ResponseEntity.ok(fileDownloadUri);
     }
 
+    /**
+     * Запрос файла.
+     *
+     * @param request запрос
+     * @param fileName название файла
+     * @return ответ
+     */
     public ResponseEntity download(HttpServletRequest request, @PathVariable String fileName) {
         if (localDocumentRepository.getOne(fileName) == null) {
             return null;

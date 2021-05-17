@@ -12,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.oks.spring.security.jwt.JwtFilter;
 
+/**
+ * Конфиг для аутентификации и авторизации.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -19,13 +22,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtFilter jwtFilter;
 
+    /**
+     * Конфигурация. Добавление страниц с различным доступом.
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .httpBasic().disable()
-                .csrf().disable()
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .httpBasic().disable()//отключение базовой аутентификации
+                .csrf().disable() //отключение (защиты) от межсайтовой подделки запроса
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)//достали данные из токена и получили пользователя
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//не хранится сессия пользователя, т.к. есть токен
                 .and()
                 .authorizeRequests()
                 .antMatchers(
@@ -42,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
+    //для генерации хеша
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

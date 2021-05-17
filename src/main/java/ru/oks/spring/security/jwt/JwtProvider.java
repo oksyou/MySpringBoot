@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ *Класс для работы с токеном.
+ */
 @Component
 @Log
 public class JwtProvider {
@@ -16,6 +19,12 @@ public class JwtProvider {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
+    /**
+     * Создание токена. Действителен 15 дней
+     *
+     * @param login логин
+     * @return
+     */
     public String generateToken(String login) {
         Date date = Date.from(LocalDate.now().plusDays(15).atStartOfDay(ZoneId.systemDefault()).toInstant());
         return Jwts.builder()
@@ -25,6 +34,12 @@ public class JwtProvider {
                 .compact();
     }
 
+    /**
+     * Валидачия и выброс исключения в случае ошибки.
+     *
+     * @param token токен
+     * @return корректный или нет
+     */
     public boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
@@ -43,6 +58,12 @@ public class JwtProvider {
         return false;
     }
 
+    /**
+     * Получение логин из токена.
+     *
+     * @param token токен
+     * @return логин
+     */
     public String getLoginFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
         return claims.getSubject();

@@ -28,6 +28,9 @@ public class JwtFilter extends GenericFilterBean {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    /**
+     * Проерка корректности токена для пользователя.
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         logger.info("do filter...");
@@ -43,6 +46,12 @@ public class JwtFilter extends GenericFilterBean {
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
+    /**
+     * Извлечение токена из запроса.
+     *
+     * @param request запрос
+     * @return токен
+     */
     private String getTokenFromRequest(HttpServletRequest request) {
         String bearer = request.getHeader(AUTHORIZATION);
         if (hasText(bearer) && bearer.startsWith("Bearer ")) {

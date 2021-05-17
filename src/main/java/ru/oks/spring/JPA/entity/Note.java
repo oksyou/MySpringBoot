@@ -4,22 +4,34 @@ import ru.oks.spring.JDBC.entity.User;
 
 import javax.persistence.*;
 
+/**
+ * Запись.
+ */
 @Entity
 @Table(name = "note")
 public class Note {
+    /**
+     * Идентификатор.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-
+    /**
+     * Название.
+     */
     @Column(name = "title")
     private String title;
-
+    /**
+     * Описание.
+     */
     @Column(name = "description")
     private String description;
-
+    /**
+     * Принадлежность записи пользователю.
+     */
     @ManyToOne
-    @JoinColumn(name="user_login", nullable=false)
+    @JoinColumn(name = "user_login", nullable = false)
     private User userlogin;
 
     public Note() {

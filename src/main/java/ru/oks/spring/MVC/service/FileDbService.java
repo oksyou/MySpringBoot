@@ -16,26 +16,41 @@ import ru.oks.spring.JPA.repository.DocumentRepository;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * Сервис для работы с файлами в базе данных.
+ */
 @Service
 public class FileDbService {
     @Autowired
     private DocumentRepository documentRepository;
 
     @Transactional
-    public void save(Document document){
+    public void save(Document document) {
         documentRepository.save(document);
     }
+
+    /**
+     * Поиск по названию.
+     *
+     * @param docName название
+     * @return документ
+     */
     @Transactional
-    public Document findByDocName(String docName){
+    public Document findByDocName(String docName) {
         return documentRepository.findByDocName(docName);
     }
 
+    /**
+     * Загрузка в БД.
+     *
+     * @param file файл
+     * @return ответ
+     */
     @Transactional
-    public ResponseEntity uploadInDb(MultipartFile file){
+    public ResponseEntity uploadInDb(MultipartFile file) {
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         Document doc = new Document(fileName);
-        //doc.setDocName(fileName);
         try {
             doc.setFile(file.getBytes());
         } catch (IOException e) {
@@ -49,11 +64,20 @@ public class FileDbService {
         return ResponseEntity.ok(fileDownloadUri);
     }
 
+    /**
+     * Загрузить файл из БД.
+     *
+     * @param request запрос
+     * @param fileName имя файла
+     * @return ответ
+     */
     @Transactional
-    public ResponseEntity downloadFromDb(HttpServletRequest request, @PathVariable String fileName){
+    public ResponseEntity downloadFromDb(HttpServletRequest request, @PathVariable String fileName) {
+        //получили документ
         Document document = findByDocName(fileName);
         String contentType;
         try {
+            //тип документа
             contentType = request.getServletContext().getMimeType(fileName);
         } catch (Exception ex) {
             return ResponseEntity.badRequest().header("Could not determine file type.").build();

@@ -13,55 +13,99 @@ import java.util.List;
 
 import static org.springframework.util.StringUtils.hasText;
 
+/**
+ * Контроллер для работы с записями пользователей.
+ */
 @RestController
 @RequestMapping(value = "/note")
 public class NoteController {
     @Autowired
     private UserService userService;
+    /**
+     * Для токенов.
+     */
     @Autowired
     private JwtProvider jwtProvider;
 
+    /**
+     * Добавление записи пользователю.
+     *
+     * @param request Http запрос
+     * @param noteDTO запись
+     */
     @PostMapping("/add")
-    public void addNoteForUser(HttpServletRequest request, @RequestBody NoteDTO noteDTO){
-        String token=tokenFromRequest(request);
-        if (token!=null)
-        userService.addNoteForUser(jwtProvider.getLoginFromToken(token), noteDTO);
+    public void addNoteForUser(HttpServletRequest request, @RequestBody NoteDTO noteDTO) {
+        String token = tokenFromRequest(request);
+        if (token != null)
+            userService.addNoteForUser(jwtProvider.getLoginFromToken(token), noteDTO);
     }
 
+    /**
+     * Обновление записи пользователя.
+     *
+     * @param request Http запрос
+     * @param id идентификатор записи
+     * @param noteDTO новая запись
+     */
     @PatchMapping("/{id}")
-    public void updateNodeForUser(HttpServletRequest request, @PathVariable long id, @RequestBody NoteDTO noteDTO){
-        String token=tokenFromRequest(request);
-        if (token!=null)
-        userService.updateNote(jwtProvider.getLoginFromToken(token), id, noteDTO);
+    public void updateNodeForUser(HttpServletRequest request, @PathVariable long id, @RequestBody NoteDTO noteDTO) {
+        String token = tokenFromRequest(request);
+        if (token != null)
+            userService.updateNote(jwtProvider.getLoginFromToken(token), id, noteDTO);
     }
 
+    /**
+     * Получение записи пользователя.
+     *
+     * @param request Http запрос
+     * @param id идентификатор записи
+     * @return запись
+     */
     @GetMapping("/{id}")
-    public NoteDTO getNoteForUserById(HttpServletRequest request, @PathVariable long id){
-        String token=tokenFromRequest(request);
-        Note note=userService.getNoteForUserById(jwtProvider.getLoginFromToken(token), id);
+    public NoteDTO getNoteForUserById(HttpServletRequest request, @PathVariable long id) {
+        String token = tokenFromRequest(request);
+        Note note = userService.getNoteForUserById(jwtProvider.getLoginFromToken(token), id);
         return new NoteDTO(note.getTitle(), note.getDescription());
     }
 
+    /**
+     * Получение всех записей пользователя.
+     *
+     * @param request запрос
+     * @return записи пользователя
+     */
     @GetMapping("/getall")
-    public List<NoteDTO> getAllNoteForUser(HttpServletRequest request){
-        String token=tokenFromRequest(request);
+    public List<NoteDTO> getAllNoteForUser(HttpServletRequest request) {
+        String token = tokenFromRequest(request);
 
-        List<Note> notes= userService.getAllNotesByUser(jwtProvider.getLoginFromToken(token));
-        List<NoteDTO> noteDTOList=new ArrayList<>();
-        for (Note n:notes){
+        List<Note> notes = userService.getAllNotesByUser(jwtProvider.getLoginFromToken(token));
+        List<NoteDTO> noteDTOList = new ArrayList<>();
+        for (Note n : notes) {
             noteDTOList.add(new NoteDTO(n.getTitle(), n.getDescription()));
         }
         return noteDTOList;
     }
 
+    /**
+     * Удаление записи.
+     *
+     * @param request запрос
+     * @param id идентификатор записи
+     */
     @DeleteMapping("/{id}")
-    public void deleteNoteForUserById(HttpServletRequest request, @PathVariable long id){
-        String token=tokenFromRequest(request);
+    public void deleteNoteForUserById(HttpServletRequest request, @PathVariable long id) {
+        String token = tokenFromRequest(request);
         userService.deleteNoteForUserByid(jwtProvider.getLoginFromToken(token), id);
     }
 
-    private String tokenFromRequest(HttpServletRequest request){
-        String token=request.getHeader("Authorization");
+    /**
+     * Получение корректного токена из запроса
+     *
+     * @param request запрос
+     * @return токен
+     */
+    private String tokenFromRequest(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
         if (hasText(token) && token.startsWith("Bearer ")) {
             return token.substring(7);
         }

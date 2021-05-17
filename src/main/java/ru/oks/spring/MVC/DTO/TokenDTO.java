@@ -1,6 +1,12 @@
 package ru.oks.spring.MVC.DTO;
 
+/**
+ * Токен для аутентификации.
+ */
 public class TokenDTO {
+    /**
+     * Bearer Токен.
+     */
     private String token;
 
     public TokenDTO() {

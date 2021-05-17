@@ -2,9 +2,18 @@ package ru.oks.spring.MVC.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+/**
+ * ДТО пользователя.
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
+    /**
+     * Логин.
+     */
     private String login;
+    /**
+     * Пароль.
+     */
     private String password;
 
     public UserDTO() {

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import ru.oks.spring.MVC.DTO.IpLangBodyDTO;
 import ru.oks.spring.MVC.DTO.TimeDifferenceDTO;
 
@@ -13,6 +14,9 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+/**
+ * Приветственный контроллер.
+ */
 @RestController
 public class GreetingController {
 
@@ -21,6 +25,12 @@ public class GreetingController {
         return "Hello, my friend";
     }
 
+    /**
+     * Получения id запроса, его языка и тела.
+     *
+     * @param request запрос
+     * @return IpLangBodyDTO
+     */
     @PostMapping("/simple_values")
     public IpLangBodyDTO simpleValues(HttpServletRequest request) {
         String ipAddress = request.getRemoteAddr();
@@ -44,11 +54,17 @@ public class GreetingController {
         return temp;
     }
 
+    /**
+     * Разница между текущим времени и времени в параметре.
+     *
+     * @param time время
+     * @return разница
+     */
     @GetMapping("/gettime")
     public TimeDifferenceDTO getTimeDifference(@RequestParam("time") long time) {
         TimeDifferenceDTO timeDifferenceDTO = new TimeDifferenceDTO();
-        timeDifferenceDTO.currentTime = System.currentTimeMillis();
-        timeDifferenceDTO.timediff = timeDifferenceDTO.currentTime - time;
+        timeDifferenceDTO.setCurrentTime(System.currentTimeMillis());
+        timeDifferenceDTO.setTimediff(timeDifferenceDTO.getCurrentTime() - time);
 
         return timeDifferenceDTO;
     }

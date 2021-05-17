@@ -5,16 +5,28 @@ import ru.oks.spring.JPA.entity.Note;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
+
+/**
+ *Сущность пользователя.
+ */
 @Entity
 @Table(name = "users")
 public class User {
+    /**
+     * Логин пользователя.
+     */
     @Id
     @Column(name = "login")
     private String login;
+    /**
+     * Пароль пользователя.
+     */
     @Column(name = "password")
     private String password;
 
+    /**
+     * Список записей пользователя.
+     */
     @JsonIgnore
     @OneToMany(mappedBy = "userlogin")
     private List<Note> notes;
@@ -31,12 +43,12 @@ public class User {
         return login;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {

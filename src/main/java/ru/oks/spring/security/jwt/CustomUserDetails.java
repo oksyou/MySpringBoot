@@ -6,12 +6,21 @@ import ru.oks.spring.JDBC.entity.User;
 
 import java.util.Collection;
 
+/**
+ *Класс User для Spring Security
+ */
 public class CustomUserDetails implements UserDetails {
 
     private String login;
     private String password;
     private Collection<? extends GrantedAuthority> grantedAuthorities;
 
+    /**
+     * Конвертация из сущности User в сущность, пригодную для Spring Security.
+     *
+     * @param userEntity сущность пользователя
+     * @return конвертированная сущность пользователя
+     */
     public static CustomUserDetails fromUserEntityToCustomUserDetails(User userEntity) {
         CustomUserDetails c = new CustomUserDetails();
         c.login = userEntity.getLogin();

@@ -2,6 +2,9 @@ package ru.oks.spring.JPA.entity;
 
 import javax.persistence.*;
 
+/**
+ * УРЛ. Воть.
+ */
 @Entity
 @Table(name = "url")
 public class Url {

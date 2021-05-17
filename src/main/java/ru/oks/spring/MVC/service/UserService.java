@@ -13,33 +13,64 @@ import ru.oks.spring.MVC.DTO.UserDTO;
 
 import java.util.List;
 
+/**
+ * Сервис для работы с пользователями.
+ */
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private NoteRepository noteRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Получить пользователя.
+     *
+     * @param login логин
+     * @return пользователь
+     */
     public User getUser(String login) {
         return userRepository.getUserByLogin(login);
     }
 
+    /**
+     * Добавить пользователя.
+     *
+     * @param userDTO логин и пароль
+     */
     public void addUser(UserDTO userDTO) {
         if (getUser(userDTO.getLogin()) == null)
             userRepository.insert(new User(userDTO.getLogin(), passwordEncoder.encode(userDTO.getPassword())));
     }
 
+    /**
+     * Обновить пароль.
+     *
+     * @param login логин
+     * @param password пароль
+     */
     public void updatePassword(String login, String password) {
         userRepository.update(login, passwordEncoder.encode(password));
     }
 
+    /**
+     * Удалить пользователя.
+     *
+     * @param login логин
+     */
     public void deleteUser(String login) {
         userRepository.delete(login);
     }
 
+    /**
+     * Получить по логину и паролю.
+     *
+     * @param login логин
+     * @param password пароль
+     * @return пользователь
+     */
     public User getByLoginAndPassword(String login, String password) {
         User user = getUser(login);
         if (user != null) {
@@ -49,28 +80,57 @@ public class UserService {
         }
         return null;
     }
-
-
-    public void addNoteForUser(String login, NoteDTO noteDTO){
+//работа с записями пользователя
+    /**
+     * Добавление новой записи.
+     *
+     * @param login логин
+     * @param noteDTO запись
+     */
+    public void addNoteForUser(String login, NoteDTO noteDTO) {
         noteRepository.save(new Note(noteDTO.getTitle(), noteDTO.getDescription(), getUser(login)));
     }
 
-//    public Note getNoteByUserLoginAndTitle(String login, String title){
-//        return noteRepository.findNoteByUserloginAndTitle(getUser(login), title);
-//    }
-
-    public List<Note> getAllNotesByUser(String login){
+    /**
+     * Получение всех записей.
+     *
+     * @param login логин
+     * @return записи
+     */
+    public List<Note> getAllNotesByUser(String login) {
         return noteRepository.findAllByUserlogin(getUser(login));
     }
 
-    public void updateNote(String login, long id, NoteDTO noteDTO){
+    /**
+     * Обновление записи.
+     *
+     * @param login логин
+     * @param id идентификатор записи
+     * @param noteDTO запись
+     */
+    public void updateNote(String login, long id, NoteDTO noteDTO) {
         noteRepository.save(new Note(id, noteDTO.getTitle(), noteDTO.getDescription(), getUser(login)));
     }
-    public Note getNoteForUserById(String login, long id){
+
+    /**
+     * Получение записи.
+     *
+     * @param login логин
+     * @param id идентификатор записи
+     * @return запись
+     */
+    public Note getNoteForUserById(String login, long id) {
         return noteRepository.findNoteByUserloginAndId(getUser(login), id);
     }
+
+    /**
+     * Удаление записи.
+     *
+     * @param login логин
+     * @param id идентификатор записи
+     */
     @Transactional
-    public void deleteNoteForUserByid(String login, long id){
+    public void deleteNoteForUserByid(String login, long id) {
         noteRepository.deleteNoteByUserloginAndId(getUser(login), id);
     }
 

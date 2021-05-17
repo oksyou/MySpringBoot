@@ -1,8 +1,16 @@
 package ru.oks.spring.MVC.DTO;
 
+/**
+ * Запись пользователя.
+ */
 public class NoteDTO {
-    //private long id;
+    /**
+     * Название.
+     */
     private String title;
+    /**
+     * Содержание записи.
+     */
     private String description;
 
     public NoteDTO() {

@@ -5,9 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Документ на ПК.
+ */
 @Entity
 @Table(name = "local_document")
 public class LocalDocument {
+    /**
+     * Название документа.
+     */
     @Id
     @Column(name = "local_doc_name")
     private String docName;

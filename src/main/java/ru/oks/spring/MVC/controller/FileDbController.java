@@ -8,17 +8,33 @@ import ru.oks.spring.MVC.service.FileDbService;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Контроллер для работы с файлами в БД.
+ */
 @RestController
 @RequestMapping(value = "/filesdb")
 public class FileDbController {
     @Autowired
     private FileDbService fileDbService;
 
+    /**
+     * Загрузка файла в БД.
+     *
+     * @param file файл
+     * @return ответ о выполнении загрузки
+     */
     @PostMapping("/upload")
     public ResponseEntity uploadToDB(@RequestParam("file") MultipartFile file) {
         return fileDbService.uploadInDb(file);
     }
 
+    /**
+     * Загрузка файла из БД.
+     *
+     * @param request Http запрос
+     * @param fileName имя файла
+     * @return ответ о загрузке
+     */
     @GetMapping("/download/{fileName}")
     public ResponseEntity downloadFromDB(HttpServletRequest request, @PathVariable String fileName) {
         return fileDbService.downloadFromDb(request, fileName);

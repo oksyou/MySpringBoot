@@ -45,7 +45,7 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException expEx) {
-            System.out.println("Token expired");//TODO
+            System.out.println("Token expired");
         } catch (UnsupportedJwtException unsEx) {
             System.out.println("Unsupported jwt");
         } catch (MalformedJwtException mjEx) {

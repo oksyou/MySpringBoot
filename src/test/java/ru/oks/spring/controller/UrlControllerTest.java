@@ -40,7 +40,6 @@ public class UrlControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        //TODO попробовать использовать это MyList myList = mock(MyList.class);
         UrlDTO urlDTO=new UrlDTO(0, "Съешь еще этих мягких французских булок да выпей чаю");
         when(urlService.convertToShortLink(urlDTO)).thenReturn((long) 1);
         UrlDTO newUrl1=urlController.urlConvertToHash(urlDTO);

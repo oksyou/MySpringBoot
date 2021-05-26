@@ -51,7 +51,7 @@ public class NoteController {
      * Обновление записи пользователя.
      *
      * @param request Http запрос
-     * @param id идентификатор записи
+     * @param id      идентификатор записи
      * @param noteDTO новая запись
      */
     @PatchMapping("/{id}")
@@ -65,7 +65,7 @@ public class NoteController {
      * Получение записи пользователя.
      *
      * @param request Http запрос
-     * @param id идентификатор записи
+     * @param id      идентификатор записи
      * @return запись
      */
     @GetMapping("/get/{id}")
@@ -97,7 +97,7 @@ public class NoteController {
      * Удаление записи.
      *
      * @param request запрос
-     * @param id идентификатор записи
+     * @param id      идентификатор записи
      */
     @DeleteMapping("/{id}")
     public void deleteNoteForUserById(HttpServletRequest request, @PathVariable long id) {

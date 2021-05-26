@@ -7,10 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
  * Тестирование загрузки конфигурации.
  */
 @SpringBootTest
-    public class ApplicationTest {
+public class ApplicationTest {
 
     @Test
-    public void contextLoads(){
+    public void contextLoads() {
 
     }
 }

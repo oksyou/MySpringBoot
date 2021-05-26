@@ -66,7 +66,7 @@ public class FileService {
     /**
      * Запрос файла.
      *
-     * @param request запрос
+     * @param request  запрос
      * @param fileName название файла
      * @return ответ
      */

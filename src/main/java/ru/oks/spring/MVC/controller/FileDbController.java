@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * Контроллер для работы с файлами в БД.
  */
 @RestController
-@RequestMapping(value = "${path.db-files")
+@RequestMapping(value = "${path.db-files}")
 public class FileDbController {
     @Autowired
     private FileDbService fileDbService;
@@ -36,7 +36,7 @@ public class FileDbController {
     /**
      * Загрузка файла из БД.
      *
-     * @param request Http запрос
+     * @param request  Http запрос
      * @param fileName имя файла
      * @return ответ о загрузке
      */

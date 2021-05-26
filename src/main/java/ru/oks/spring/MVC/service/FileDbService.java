@@ -24,14 +24,14 @@ import java.io.IOException;
 public class FileDbService {
     @Autowired
     private DocumentRepository documentRepository;
+    @Value("${path.db-files}")
+    private String basePath;
 
     @Transactional
     public void save(Document document) {
         documentRepository.save(document);
     }
 
-    @Value("${path.db-files")
-    private String basePath;
     /**
      * Поиск по названию.
      *
@@ -71,7 +71,7 @@ public class FileDbService {
     /**
      * Загрузить файл из БД.
      *
-     * @param request запрос
+     * @param request  запрос
      * @param fileName имя файла
      * @return ответ
      */

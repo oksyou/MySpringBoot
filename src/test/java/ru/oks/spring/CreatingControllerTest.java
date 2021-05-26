@@ -16,7 +16,7 @@ public class CreatingControllerTest {
     GreetingController controller;
 
     @Test
-    public void contextLoads(){
+    public void contextLoads() {
         Assertions.assertNotNull(controller);
     }
 }

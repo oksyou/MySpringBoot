@@ -16,7 +16,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 /**
- *Класс для работы с токеном.
+ * Класс для работы с токеном.
  */
 @Component
 @Log

@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * Конфигурация. Добавление страниц с различным доступом.
+     *
      * @param http
      * @throws Exception
      */

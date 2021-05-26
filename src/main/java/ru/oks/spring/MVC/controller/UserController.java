@@ -41,7 +41,7 @@ public class UserController {
     /**
      * Обновление пароля.
      *
-     * @param login логин
+     * @param login   логин
      * @param userDTO дто с новым паролем
      */
     @PatchMapping(value = "/{login}")

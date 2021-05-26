@@ -33,7 +33,7 @@ public interface UserRepository {
     /**
      * Обновление пароля пользователя по логину.
      *
-     * @param login логин.
+     * @param login    логин.
      * @param password пароль.
      */
     void update(String login, String password);

@@ -17,7 +17,7 @@
 
     <dependencies>
 
-<!--        Spring boot dependensies-->
+<!--        Spring boot dependencies-->
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

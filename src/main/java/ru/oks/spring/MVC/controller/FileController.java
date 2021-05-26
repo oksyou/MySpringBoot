@@ -53,7 +53,7 @@ public class FileController {
     /**
      * Загрузка файла из локальной системы.
      *
-     * @param request запрос
+     * @param request  запрос
      * @param fileName название файла
      * @return ответ о загрузке
      */

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 /**
- *Сущность пользователя.
+ * Сущность пользователя.
  */
 @Getter
 @Setter

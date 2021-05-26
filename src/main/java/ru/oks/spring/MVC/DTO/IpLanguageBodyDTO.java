@@ -1,12 +1,10 @@
 package ru.oks.spring.MVC.DTO;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 /**
- *Ip адрес, язык, тело запроса.
+ * Ip адрес, язык, тело запроса.
  */
 @Getter
 @Setter

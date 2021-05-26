@@ -7,7 +7,7 @@ import ru.oks.spring.JDBC.entity.User;
 import ru.oks.spring.JDBC.repository.UserRepository;
 
 /**
- *Шаблон реализации репозитория пользователя.
+ * Шаблон реализации репозитория пользователя.
  */
 @Component
 public class UserTemplate implements UserRepository {
@@ -56,7 +56,7 @@ public class UserTemplate implements UserRepository {
     /**
      * Обновление пароля пользователя по логину.
      *
-     * @param login логин.
+     * @param login    логин.
      * @param password пароль.
      */
     @Override

@@ -48,7 +48,7 @@ public class UserService {
     /**
      * Обновить пароль.
      *
-     * @param login логин
+     * @param login    логин
      * @param password пароль
      */
     public void updatePassword(String login, String password) {
@@ -67,7 +67,7 @@ public class UserService {
     /**
      * Получить по логину и паролю.
      *
-     * @param login логин
+     * @param login    логин
      * @param password пароль
      * @return пользователь
      */
@@ -81,10 +81,11 @@ public class UserService {
         return null;
     }
 //работа с записями пользователя
+
     /**
      * Добавление новой записи.
      *
-     * @param login логин
+     * @param login   логин
      * @param noteDTO запись
      */
     public void addNoteForUser(String login, NoteDTO noteDTO) {
@@ -104,8 +105,8 @@ public class UserService {
     /**
      * Обновление записи.
      *
-     * @param login логин
-     * @param id идентификатор записи
+     * @param login   логин
+     * @param id      идентификатор записи
      * @param noteDTO запись
      */
     public void updateNote(String login, long id, NoteDTO noteDTO) {
@@ -116,7 +117,7 @@ public class UserService {
      * Получение записи.
      *
      * @param login логин
-     * @param id идентификатор записи
+     * @param id    идентификатор записи
      * @return запись
      */
     public Note getNoteForUserById(String login, long id) {
@@ -127,7 +128,7 @@ public class UserService {
      * Удаление записи.
      *
      * @param login логин
-     * @param id идентификатор записи
+     * @param id    идентификатор записи
      */
     @Transactional
     public void deleteNoteForUserById(String login, long id) {

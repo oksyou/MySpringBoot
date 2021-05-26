@@ -49,7 +49,7 @@ public class UrlService {
             Url link = urlRepository.getOne(id);
             return link.getLongUrl();
         } catch (EntityNotFoundException e) {
-            return "There is no entity with " + shortLink;//TODO
+            return "There is no entity with " + shortLink;
         }
     }
 }

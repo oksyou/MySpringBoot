@@ -1,10 +1,14 @@
 package ru.oks.spring.MVC.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * ДТО пользователя.
  */
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
     /**
@@ -21,22 +25,6 @@ public class UserDTO {
 
     public UserDTO(String login, String password) {
         this.login = login;
-        this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 }

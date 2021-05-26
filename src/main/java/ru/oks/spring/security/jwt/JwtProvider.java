@@ -1,6 +1,12 @@
 package ru.oks.spring.security.jwt;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -45,7 +51,7 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException expEx) {
-            System.out.println("Token expired");//TODO
+            System.out.println("Token expired");
         } catch (UnsupportedJwtException unsEx) {
             System.out.println("Unsupported jwt");
         } catch (MalformedJwtException mjEx) {

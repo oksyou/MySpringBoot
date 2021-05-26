@@ -2,7 +2,12 @@ package ru.oks.spring.MVC.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import ru.oks.spring.MVC.service.FileService;
 
@@ -15,7 +20,7 @@ import java.util.List;
  * Рестконтроллер для работы с локальными файлами.
  */
 @RestController
-@RequestMapping(value = "/files")
+@RequestMapping(value = "${path.local-files}")
 public class FileController {
     @Autowired
     private FileService fileService;
@@ -37,11 +42,10 @@ public class FileController {
      * @param files массив файлов
      * @return ответ о загрузке файлов
      */
-    @PostMapping("/multi-upload")
+    @PostMapping("/multi_upload")
     public ResponseEntity multiUpload(@RequestParam("files") MultipartFile[] files) {
         List<Object> fileDownloadUrls = new ArrayList<>();
-        Arrays.asList(files)
-                .stream()
+        Arrays.stream(files)
                 .forEach(file -> fileDownloadUrls.add(uploadToLocalFileSystem(file).getBody()));
         return ResponseEntity.ok(fileDownloadUrls);
     }

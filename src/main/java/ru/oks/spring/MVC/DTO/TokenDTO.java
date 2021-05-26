@@ -1,8 +1,13 @@
 package ru.oks.spring.MVC.DTO;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Токен для аутентификации.
  */
+@Getter
+@Setter
 public class TokenDTO {
     /**
      * Bearer Токен.
@@ -13,14 +18,6 @@ public class TokenDTO {
     }
 
     public TokenDTO(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
         this.token = token;
     }
 }

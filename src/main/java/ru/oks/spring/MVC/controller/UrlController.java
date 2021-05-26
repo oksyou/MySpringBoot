@@ -3,7 +3,12 @@ package ru.oks.spring.MVC.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.oks.spring.MVC.DTO.UrlDTO;
 import ru.oks.spring.MVC.service.UrlService;
 
@@ -30,7 +35,7 @@ public class UrlController {
      * @param request запрос
      * @return короткая ссылка
      */
-    @PostMapping("/linkhash")
+    @PostMapping("/convert_hash")
     public UrlDTO urlConvertToHash(@RequestBody UrlDTO request) {
         return new UrlDTO(urlService.convertToShortLink(request), null);
     }

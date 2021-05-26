@@ -1,18 +1,28 @@
 package ru.oks.spring.JPA.entity;
 
-import javax.persistence.*;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 /**
  * Документ.
  */
+@Getter
+@Setter
 @Entity
-@Table(name = "document")
+@Table
 public class Document {
     /**
      * Название документа.
      */
     @Id
-    @Column(name = "docname")
+    @Column
     private String docName;
     /**
      * Документ как массив байтов.
@@ -26,21 +36,5 @@ public class Document {
 
     public Document(String docName) {
         this.docName = docName;
-    }
-
-    public String getDocName() {
-        return docName;
-    }
-
-    public void setDocName(String docName) {
-        this.docName = docName;
-    }
-
-    public byte[] getFile() {
-        return file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
     }
 }

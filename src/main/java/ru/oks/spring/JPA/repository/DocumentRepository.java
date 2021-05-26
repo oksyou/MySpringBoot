@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.oks.spring.JPA.entity.Document;
 
 /**
- * Репозиторй JPA для работы с документами.
+ * Репозиторий JPA для работы с документами.
  */
 @Repository
 public interface DocumentRepository extends JpaRepository<Document, Long> {

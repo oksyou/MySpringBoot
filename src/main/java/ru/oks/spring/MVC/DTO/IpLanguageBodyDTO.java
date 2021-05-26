@@ -1,20 +1,27 @@
 package ru.oks.spring.MVC.DTO;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+
 /**
  *Ip адрес, язык, тело запроса.
  */
-public class IpLangBodyDTO {
+@Getter
+@Setter
+public class IpLanguageBodyDTO {
     /**
      * Ip адрес запроса.
      */
-    public String ip;
+    private String ip;
     /**
      * Язык запроса.
      */
-    public String lang;
+    private String lang;
     /**
      * Тело запроса.
      */
-    public String body;
+    private String body;
 
 }

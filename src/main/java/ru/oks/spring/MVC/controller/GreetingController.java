@@ -4,8 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import ru.oks.spring.MVC.DTO.IpLangBodyDTO;
+import ru.oks.spring.MVC.DTO.IpLanguageBodyDTO;
 import ru.oks.spring.MVC.DTO.TimeDifferenceDTO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +31,7 @@ public class GreetingController {
      * @return IpLangBodyDTO
      */
     @PostMapping("/simple_values")
-    public IpLangBodyDTO simpleValues(HttpServletRequest request) {
+    public IpLanguageBodyDTO simpleValues(HttpServletRequest request) {
         String ipAddress = request.getRemoteAddr();
 
         Locale currentLocale = request.getLocale();
@@ -40,16 +39,16 @@ public class GreetingController {
 
         String body = "";
         try {
-            BufferedReader bodyreader = request.getReader();
-            body = bodyreader.lines().collect(Collectors.joining());
+            BufferedReader bodyReader = request.getReader();
+            body = bodyReader.lines().collect(Collectors.joining());
         } catch (IOException e) {
             System.out.println(e);
         }
 
-        IpLangBodyDTO temp = new IpLangBodyDTO();
-        temp.ip = ipAddress;
-        temp.lang = language;
-        temp.body = body;
+        IpLanguageBodyDTO temp = new IpLanguageBodyDTO();
+        temp.setIp(ipAddress);
+        temp.setLang(language);
+        temp.setBody(body);
 
         return temp;
     }
@@ -60,11 +59,11 @@ public class GreetingController {
      * @param time время
      * @return разница
      */
-    @GetMapping("/gettime")
+    @GetMapping("/difference_time")
     public TimeDifferenceDTO getTimeDifference(@RequestParam("time") long time) {
         TimeDifferenceDTO timeDifferenceDTO = new TimeDifferenceDTO();
         timeDifferenceDTO.setCurrentTime(System.currentTimeMillis());
-        timeDifferenceDTO.setTimediff(timeDifferenceDTO.getCurrentTime() - time);
+        timeDifferenceDTO.setTimeDifference(timeDifferenceDTO.getCurrentTime() - time);
 
         return timeDifferenceDTO;
     }

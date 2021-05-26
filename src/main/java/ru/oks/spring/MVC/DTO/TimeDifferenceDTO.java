@@ -1,8 +1,13 @@
 package ru.oks.spring.MVC.DTO;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * ДТО для определения разницы во времени.
  */
+@Getter
+@Setter
 public class TimeDifferenceDTO {
     /**
      * Текущее время.
@@ -11,21 +16,5 @@ public class TimeDifferenceDTO {
     /**
      * Разница во времени
      */
-    private long timediff;
-
-    public Long getCurrentTime() {
-        return currentTime;
-    }
-
-    public void setCurrentTime(Long currentTime) {
-        this.currentTime = currentTime;
-    }
-
-    public long getTimediff() {
-        return timediff;
-    }
-
-    public void setTimediff(long timediff) {
-        this.timediff = timediff;
-    }
+    private long timeDifference;
 }

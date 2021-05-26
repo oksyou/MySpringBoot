@@ -98,7 +98,7 @@ public class UserService {
      * @return записи
      */
     public List<Note> getAllNotesByUser(String login) {
-        return noteRepository.findAllByUserlogin(getUser(login));
+        return noteRepository.findAllByUserLogin(getUser(login));
     }
 
     /**
@@ -120,7 +120,7 @@ public class UserService {
      * @return запись
      */
     public Note getNoteForUserById(String login, long id) {
-        return noteRepository.findNoteByUserloginAndId(getUser(login), id);
+        return noteRepository.findNoteByUserLoginAndId(getUser(login), id);
     }
 
     /**
@@ -130,8 +130,8 @@ public class UserService {
      * @param id идентификатор записи
      */
     @Transactional
-    public void deleteNoteForUserByid(String login, long id) {
-        noteRepository.deleteNoteByUserloginAndId(getUser(login), id);
+    public void deleteNoteForUserById(String login, long id) {
+        noteRepository.deleteNoteByUserLoginAndId(getUser(login), id);
     }
 
 }

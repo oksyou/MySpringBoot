@@ -1,7 +1,14 @@
 package ru.oks.spring.MVC.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.oks.spring.JPA.entity.Note;
 import ru.oks.spring.MVC.DTO.NoteDTO;
 import ru.oks.spring.MVC.service.UserService;
@@ -61,7 +68,7 @@ public class NoteController {
      * @param id идентификатор записи
      * @return запись
      */
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public NoteDTO getNoteForUserById(HttpServletRequest request, @PathVariable long id) {
         String token = tokenFromRequest(request);
         Note note = userService.getNoteForUserById(jwtProvider.getLoginFromToken(token), id);
@@ -74,7 +81,7 @@ public class NoteController {
      * @param request запрос
      * @return записи пользователя
      */
-    @GetMapping("/getall")
+    @GetMapping("/get/all")
     public List<NoteDTO> getAllNoteForUser(HttpServletRequest request) {
         String token = tokenFromRequest(request);
 
@@ -95,7 +102,7 @@ public class NoteController {
     @DeleteMapping("/{id}")
     public void deleteNoteForUserById(HttpServletRequest request, @PathVariable long id) {
         String token = tokenFromRequest(request);
-        userService.deleteNoteForUserByid(jwtProvider.getLoginFromToken(token), id);
+        userService.deleteNoteForUserById(jwtProvider.getLoginFromToken(token), id);
     }
 
     /**

@@ -18,7 +18,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
      * @param user пользователь.
      * @return список записей.
      */
-    List<Note> findAllByUserlogin(User user);
+    List<Note> findAllByUserLogin(User user);
 
     /**
      * Поиск записи пользователя по идентификатору записи.
@@ -27,7 +27,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
      * @param id идентификатор записи.
      * @return запись.
      */
-    Note findNoteByUserloginAndId(User user, long id);
+    Note findNoteByUserLoginAndId(User user, long id);
 
     /**
      * Удаление записи пользователя по идентификатору записи.
@@ -35,5 +35,5 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
      * @param user польователь.
      * @param id идентификатор записи.
      */
-    void deleteNoteByUserloginAndId(User user, long id);
+    void deleteNoteByUserLoginAndId(User user, long id);
 }

@@ -1,20 +1,31 @@
 package ru.oks.spring.JPA.entity;
 
-import javax.persistence.*;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- * УРЛ. Воть.
+ * Сущность для хранения url.
  */
+@Getter
+@Setter
 @Entity
-@Table(name = "url")
+@Table
 public class Url {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column
     private long id;
 
-    @Column(name = "long_url")
+    @Column
     private String longUrl;
 
     public Url() {
@@ -22,13 +33,5 @@ public class Url {
 
     public Url(String longUrl) {
         this.longUrl = longUrl;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getLongUrl() {
-        return longUrl;
     }
 }

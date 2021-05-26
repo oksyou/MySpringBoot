@@ -38,13 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/simple_values",
-                        "/gettime",
+                        "/difference_time",
                         "/hello",
-                        "/user/reg",
-                        "/user/auth",
+                        "/user/registration",
+                        "/user/authentication",
                         "/url/**",
-                        "/files/**",
-                        "/filesdb/**").permitAll()
+                        "/local_files/**",
+                        "/db_files/**").permitAll()
                 .antMatchers("note/**").authenticated()
                 .antMatchers("/user/{login}/**").access("#login==authentication.name")
                 .anyRequest().authenticated();

@@ -1,6 +1,7 @@
 package ru.oks.spring.MVC.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -28,7 +29,10 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileService {
 
-    private final String basePathForUpload = "D:\\example\\upload\\";
+    private final String BASE_PATH_FOR_UPLOAD = "D:\\example\\upload\\";
+
+    @Value("${path.local-files}")
+    private String basePath;
 
     @Autowired
     private LocalDocumentRepository localDocumentRepository;
@@ -44,7 +48,7 @@ public class FileService {
         if (file.getOriginalFilename() != null) {
             fileName = StringUtils.cleanPath(file.getOriginalFilename());
         } else return null;
-        Path path = Paths.get(basePathForUpload + fileName);
+        Path path = Paths.get(BASE_PATH_FOR_UPLOAD + fileName);
         try {
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
@@ -52,7 +56,8 @@ public class FileService {
         }
         localDocumentRepository.save(new LocalDocument(fileName));
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/files/download/")
+                .path(basePath)
+                .path("/download/")
                 .path(fileName)
                 .toUriString();
         return ResponseEntity.ok(fileDownloadUri);
@@ -69,7 +74,7 @@ public class FileService {
         if (localDocumentRepository.getOne(fileName) == null) {
             return null;
         }
-        Path path = Paths.get(basePathForUpload + fileName);
+        Path path = Paths.get(BASE_PATH_FOR_UPLOAD + fileName);
         Resource resource = null;
         try {
             resource = new UrlResource(path.toUri());

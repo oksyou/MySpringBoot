@@ -1,5 +1,8 @@
 package ru.oks.spring.JPA.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,6 +11,8 @@ import javax.persistence.Table;
 /**
  * Документ на ПК.
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "local_document")
 public class LocalDocument {
@@ -25,11 +30,4 @@ public class LocalDocument {
     public LocalDocument() {
     }
 
-    public String getDocName() {
-        return docName;
-    }
-
-    public void setDocName(String docName) {
-        this.docName = docName;
-    }
 }

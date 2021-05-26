@@ -1,6 +1,7 @@
 package ru.oks.spring.MVC.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,8 @@ public class FileDbService {
         documentRepository.save(document);
     }
 
+    @Value("${path.db-files")
+    private String basePath;
     /**
      * Поиск по названию.
      *
@@ -58,7 +61,8 @@ public class FileDbService {
         }
         save(doc);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/filesdb/download/")
+                .path(basePath)
+                .path("/download/")
                 .path(fileName)
                 .toUriString();
         return ResponseEntity.ok(fileDownloadUri);

@@ -2,7 +2,7 @@ package ru.oks.spring.security.jwt;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.oks.spring.JDBC.entity.User;
+import ru.oks.spring.jdbc.entity.User;
 
 import java.util.Collection;
 

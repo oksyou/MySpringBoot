@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import ru.oks.spring.JDBC.entity.User;
-import ru.oks.spring.MVC.service.UserService;
+import ru.oks.spring.jdbc.entity.User;
+import ru.oks.spring.mvc.service.UserService;
 
 @Component
 public class CustomUserDetailsService implements UserDetailsService {

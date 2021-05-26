@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.oks.spring.MVC.controller.GreetingController;
+import ru.oks.spring.mvc.controller.GreetingController;
 
 /**
  * Тестирование создания контроллера контекстом.

@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import ru.oks.spring.MVC.DTO.UrlDTO;
-import ru.oks.spring.MVC.controller.UrlController;
-import ru.oks.spring.MVC.service.UrlService;
+import ru.oks.spring.mvc.dto.UrlDto;
+import ru.oks.spring.mvc.controller.UrlController;
+import ru.oks.spring.mvc.service.UrlService;
 
 import static org.mockito.Mockito.when;
 
@@ -34,9 +34,9 @@ public class UrlControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        UrlDTO urlDTO = new UrlDTO(0, "Съешь еще этих мягких французских булок да выпей чаю");
+        UrlDto urlDTO = new UrlDto(0, "Съешь еще этих мягких французских булок да выпей чаю");
         when(urlService.convertToShortLink(urlDTO)).thenReturn((long) 1);
-        UrlDTO newUrl1 = urlController.urlConvertToHash(urlDTO);
+        UrlDto newUrl1 = urlController.urlConvertToHash(urlDTO);
 
         Assertions.assertEquals(1, newUrl1.getId());
         Assertions.assertNull(newUrl1.getLongUrl());

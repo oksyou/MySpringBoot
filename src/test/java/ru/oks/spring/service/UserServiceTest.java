@@ -10,9 +10,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import ru.oks.spring.JDBC.entity.User;
-import ru.oks.spring.JDBC.repository.UserRepository;
-import ru.oks.spring.MVC.service.UserService;
+import ru.oks.spring.jdbc.entity.User;
+import ru.oks.spring.jdbc.repository.UserRepository;
+import ru.oks.spring.mvc.service.UserService;
 
 import static org.mockito.Mockito.when;
 

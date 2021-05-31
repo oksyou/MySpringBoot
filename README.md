@@ -17,4 +17,4 @@
 * Безопасность представлена кодированием паролей пользователей при сохранении в базу данных с помощью PasswordEncoder. При аутентификации происходит выдача bearer токена, с помощью которого происходит авторизация.
 * В пакете `screenshots` представлены некоторые результаты работы endpoint-ов.
 ## Документация
-[MySpringBoot](https://javadoc.io/doc/ru.oks.spring/MySpringBoot)
+[MySpringBoot](https://oksyou.github.io/MySpringBoot/)

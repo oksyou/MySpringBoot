@@ -29,7 +29,7 @@ public class JwtProvider {
      * Создание токена. Действителен 15 дней
      *
      * @param login логин
-     * @return
+     * @return токен
      */
     public String generateToken(String login) {
         Date date = Date.from(LocalDate.now().plusDays(15).atStartOfDay(ZoneId.systemDefault()).toInstant());

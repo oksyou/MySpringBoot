@@ -1,0 +1,14 @@
+ru.oks.spring
+ru.oks.spring.configs
+ru.oks.spring.controller
+ru.oks.spring.jdbc.entity
+ru.oks.spring.jdbc.repository
+ru.oks.spring.jdbc.template
+ru.oks.spring.jpa.entity
+ru.oks.spring.jpa.repository
+ru.oks.spring.mvc.controller
+ru.oks.spring.mvc.dto
+ru.oks.spring.mvc.service
+ru.oks.spring.security.config
+ru.oks.spring.security.jwt
+ru.oks.spring.service

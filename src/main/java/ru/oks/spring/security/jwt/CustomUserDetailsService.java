@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import ru.oks.spring.jdbc.entity.User;
 import ru.oks.spring.mvc.service.UserService;
 
+/**
+ * Сервис UserService для Spring Security.
+ */
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired

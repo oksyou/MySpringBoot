@@ -29,25 +29,25 @@ public class JwtFilter extends GenericFilterBean {
     private CustomUserDetailsService customUserDetailsService;
 
     /**
-     * Проерка корректности токена для пользователя.
+     * Проверка авторизованности пользователя.
      */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         logger.info("do filter...");
         String token = getTokenFromRequest((HttpServletRequest) servletRequest);
         if (token != null && jwtProvider.validateToken(token)) {
-            String userLogin = jwtProvider.getLoginFromToken(token);
+            String userLogin = jwtProvider.getLoginFromToken(token);//получили логин
             CustomUserDetails customUserDetails = customUserDetailsService.loadUserByUsername(userLogin);
             UsernamePasswordAuthenticationToken auth =
                     new UsernamePasswordAuthenticationToken(customUserDetails,
                             null, customUserDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            SecurityContextHolder.getContext().setAuthentication(auth);//установили аутентификацию в контекст
         }
-        filterChain.doFilter(servletRequest, servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);//проверка авторизованности
     }
 
     /**
-     * Извлечение токена из запроса.
+     * Получение токена из запроса.
      *
      * @param request запрос
      * @return токен

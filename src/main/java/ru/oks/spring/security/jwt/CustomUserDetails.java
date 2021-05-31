@@ -7,7 +7,7 @@ import ru.oks.spring.jdbc.entity.User;
 import java.util.Collection;
 
 /**
- * Класс User для Spring Security
+ * Класс User для Spring Security.
  */
 public class CustomUserDetails implements UserDetails {
 

@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @Table
 public class Note {
     /**
-     * Идентификатор.
+     * Id пользователя.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
